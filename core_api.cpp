@@ -220,11 +220,11 @@ void updateThread(Instruction* inst, int current_thread, int type)
 			uint32_t value = curr_sim->threads[current_thread].reg[inst->src1_index];
 			if(inst->isSrc2Imm)
 			{
-				adrr = curr_sim->threads[current_thread].reg[inst->src1_index] + inst->src2_index_imm;
+				adrr = curr_sim->threads[current_thread].reg[inst->dst_index] + inst->src2_index_imm;
 			}
 			else
 			{
-				adrr = curr_sim->threads[current_thread].reg[inst->src1_index] + curr_sim->threads[current_thread].reg[inst->src2_index_imm];
+				adrr = curr_sim->threads[current_thread].reg[inst->dst_index] + curr_sim->threads[current_thread].reg[inst->src2_index_imm];
 			}
 			SIM_MemDataWrite(adrr,value);
 			curr_sim->threads[current_thread].busy += SIM_GetStoreLat() + 1;
